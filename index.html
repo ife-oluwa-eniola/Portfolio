@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ifeoluwa – Portfolio</title>
-  <link rel="stylesheet" href="css/portfolio.css">
+  <title> Ifeoluwa – Portfolio</title>
+  <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
 <!-- NAV -->
-<div class="nav reveal">
+<div class="nav ">
   <div class="logo"><span>I</span>Ifeoluwa</div>
   <div class="nav-links " id="navLinks">
     <a href="#">Home</a>
@@ -26,19 +26,23 @@
 
 </div>
 <!-- HERO -->
-<section class="hero ">
+<section class="hero reveal ">
   <div>
-    <h1>Hello, I’m<br>Ifeoluwa Ajose</h1>
+    <h1>Hello, I’m
+      <span class="type-text"><br>Ifeoluwa Ajose</span>
+    </h1>
+     <h2>
+        I am a <span class="typed-text"></span>
+      </h2>
     <p>I’m a frontend developer based in Lagos, Nigeria. I build immersive and beautiful web applications.</p>
-    <a class="btn" href="#">Say Hello</a>
+    <a class="btn" href="#contact">Say Hello</a>
 
     <div class="stats">
-      <div class="stat"><strong>--</strong><span>Experience</span></div>
-      <div class="stat"><strong>--</strong><span>Projects</span></div>
+      <div class="stat"><strong>3 years</strong><span>Experience</span></div>
+      <div class="stat"><strong>-4+-</strong><span>Projects</span></div>
       <div class="stat"><strong>--</strong><span>Happy Clients</span></div>
     </div>
   </div>
-  <img src="asset/personal.png" />
 </section>
 
 <!-- ABOUT -->
@@ -47,7 +51,7 @@
   <div>
     <h2>I am a young Frontend Developer </h2>
     <p>I design and develop services for customers specializing in creating stylish, modern websites and online experiences.</p>
-    <a class="btn" href="#">My Projects</a>
+    <a class="btn" href="#projects">My Projects</a>
   </div>
 </section>
 
@@ -73,15 +77,57 @@ s
     <img src="/asset/port3.jpg" />
   </div>
 </section>
+
+<section>
+  <h2>My Projects</h2>
+  <div id="projects" class="portfolio reveal">
+    <img src="/asset/project1.png" />
+    <img src="/asset/project2.png" />
+    <img src="/asset/project3.png" />
+  </div>
+</section>
+
 <section id="contact">
   <div class="contact-section">
 
-  <h2>Get In Touch</h2>
-  <form
-  action="https://formspree.io/f/mzdavyvp"
-  method="POST"
->
- 
+  
+  <form action="https://formspree.io/f/meelldzp" method="POST">
+   <div class="contact-container">
+  <!-- Left Side: Informational Panel -->
+  <div class="left-panel">
+    <h1>Let's Chat</h1>
+    <p>Whether you have a question, want to start a project or simply want to connect.</p>
+    <p>Feel free to send me a message in the contact form.</p>
+  </div>
+
+  <!-- Right Side: Contact Form -->
+  <div class="right-panel">
+    <form>
+      <h2>Contact</h2>
+      <div class="input-group">
+        <label>Name *</label>
+        <input type="text" required>
+      </div>
+      <div class="input-group">
+        <label>Email *</label>
+        <input type="email" required>
+      </div>
+      <div class="input-group">
+        <label>Company</label>
+        <input type="text">
+      </div>
+      <div class="input-group">
+        <label>Phone</label>
+        <input type="tel">
+      </div>
+      <div class="input-group">
+        <label>Message</label>
+        <textarea rows="4"></textarea>
+      </div>
+      <button type="submit" class="submit-btn">SUBMIT</button>
+    </form>
+  </div>
+</div>
  <!-- Load Font Awesome Icons -->
 
 <div class="wrapper">
@@ -101,7 +147,7 @@ s
     <div class="icon"><i class="fab fa-github"></i></div>
     <span>Github</span>
   </a>
-   <a href="www.linkedin.com/in/ifeoluwa-ajose-383450370" class="button linkedin">
+   <a href="https://www.linkedin.com/in/ifeoluwa-ajose-383450370 " class="button linkedin">
     <div class="icon"><i class="fab fa-linkedin"></i></div>
     <span>Linkedin</span>
   </a>
@@ -115,27 +161,6 @@ s
   <a href="#"><b> &#11014; </b></a>
 </div>
 <footer>© 2026 Ifeoluwa Ajose</footer>
-
+<script src="script/index.js"></script>
 </body>
-<script>
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-}
-function revealOnScroll() {
-  const reveals = document.querySelectorAll(".reveal");
-
-  reveals.forEach((el) => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-
-    if (elementTop < windowHeight - 120) {
-      el.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-
-</script>
 </html>
