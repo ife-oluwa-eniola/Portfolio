@@ -237,6 +237,25 @@ section {
   background-color: rgb(98, 98, 250);
   color: #fff;
 }
+.about img::before{
+  content: "";
+  position: absolute;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+.about img::after{
+content: "";
+  position: absolute;
+  border-radius: 15px;
+}
 /* PROCESS */
 .process-grid {
   display: grid;
@@ -477,13 +496,6 @@ h2 {
   justify-content: center;
 }
 
-/* Right Form Panel */
-.right-panel {
-  background: white;
-  padding: 40px;
-  flex: 1.2;
-}
-
 h2 { margin-top: 0; }
 
 .input-group { margin-bottom: 15px; }
@@ -520,4 +532,12 @@ input, textarea {
     flex-direction: column;
     margin: 20px;
   }
+}
+
+.right-panel { max-width: 600px; margin: 0 auto; padding: 20px; }
+input { width: 100%; padding: 10px; margin-bottom: 15px; box-sizing: border-box; }
+
+/* Responsive break-point */
+@media (max-width: 600px) {
+  input { width: 100%; }
 }
