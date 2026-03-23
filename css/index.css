@@ -119,8 +119,7 @@ i {
     margin-bottom: 16px;
   }
 body{
-  margin-left: 15px;
-  margin-right: 0;
+ margin-right: 0;
 }
   .nav-links.active {
     display: flex;
