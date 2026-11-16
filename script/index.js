@@ -1,7 +1,9 @@
 const menuButton = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('#navLinks');
-const backTop = document.querySelector('.back-top');
 const year = document.querySelector('#year');
+const progress = document.querySelector('#scrollProgress');
+const cursor = document.querySelector('.custom-cursor');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (year) year.textContent = new Date().getFullYear();
 
@@ -24,27 +26,49 @@ if (menuButton && navLinks) {
     if (event.key === 'Escape') closeMenu();
   });
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 760) closeMenu();
+    if (window.innerWidth > 720) closeMenu();
   });
 }
 
 const revealItems = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const observer = new IntersectionObserver((entries, currentObserver) => {
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        currentObserver.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
-  revealItems.forEach(item => observer.observe(item));
+  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+  revealItems.forEach(item => revealObserver.observe(item));
 } else {
   revealItems.forEach(item => item.classList.add('is-visible'));
 }
 
-function updateBackTop() {
-  if (backTop) backTop.classList.toggle('visible', window.scrollY > 450);
+let scrollTicking = false;
+function updateScrollProgress() {
+  if (!progress) return;
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const amount = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  progress.style.width = amount + '%';
+  scrollTicking = false;
 }
-window.addEventListener('scroll', updateBackTop, { passive: true });
-updateBackTop();
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(updateScrollProgress);
+    scrollTicking = true;
+  }
+}, { passive: true });
+updateScrollProgress();
+
+if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
+  window.addEventListener('pointermove', event => {
+    cursor.style.left = event.clientX + 'px';
+    cursor.style.top = event.clientY + 'px';
+    cursor.style.opacity = '1';
+  }, { passive: true });
+  document.querySelectorAll('a, button').forEach(element => {
+    element.addEventListener('pointerenter', () => cursor.classList.add('is-active'));
+    element.addEventListener('pointerleave', () => cursor.classList.remove('is-active'));
+  });
+}
